@@ -2,30 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Privacy Policy · Overwith</title>
   <meta name="description" content="How the Overwith app handles your information.">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header>
-    <a class="brand" href="/">Overwith</a>
-    <nav>
+    <a class="brand" href="/" aria-label="Overwith home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Overwith
+    </a>
+    <nav aria-label="Main">
       <a href="/privacy" aria-current="page">Privacy</a>
       <a href="/support">Support</a>
     </nav>
   </header>
 
-  <main>
+<main id="main" class="page policy">
     <h1>Overwith Privacy Policy</h1>
     <p class="muted">Effective 27 October 2026</p>
+
+    <aside class="short" aria-labelledby="short-title">
+      <p class="short-label" id="short-title">The short version</p>
+      <p class="short-text">Overwith doesn't collect anything about you. Your tasks live on your phone, and that's where they stay.</p>
+      <ul class="chips" aria-label="What Overwith doesn't have">
+        <li>No accounts</li>
+        <li>No ads</li>
+        <li>No tracking</li>
+        <li>No servers</li>
+      </ul>
+    </aside>
+
+    <nav class="toc" aria-label="On this page">
+      <p class="toc-title">On this page</p>
+      <ol>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#your-tasks-stay-on-your-device">Your tasks stay on your device</a></li>
+        <li><a href="#no-tracking-ads-or-analytics">No tracking, ads, or analytics</a></li>
+        <li><a href="#notifications">Notifications</a></li>
+        <li><a href="#backups">Backups</a></li>
+        <li><a href="#deleting-your-data">Deleting your data</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#changes-to-this-policy">Changes to this policy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </nav>
 
     <p>
       Overwith is a task planner app. This policy explains how the Overwith
       app handles your information.
     </p>
 
-    <h2>Summary</h2>
+    <h2 id="summary">Summary</h2>
     <div class="summary">
       <p>
         Overwith does not collect, store, or share any personal information.
@@ -33,7 +68,7 @@
       </p>
     </div>
 
-    <h2>Your tasks stay on your device</h2>
+    <h2 id="your-tasks-stay-on-your-device">Your tasks stay on your device</h2>
     <p>
       Everything you enter in Overwith (task names, notes, dates, repeat
       settings, and reminder times) is saved only in the app's storage on
@@ -42,14 +77,14 @@
       your device or shared with anyone.
     </p>
 
-    <h2>No tracking, ads, or analytics</h2>
+    <h2 id="no-tracking-ads-or-analytics">No tracking, ads, or analytics</h2>
     <p>
       Overwith contains no advertising, analytics, crash reporting, or
       tracking of any kind. No third-party services in the app collect
       information about you.
     </p>
 
-    <h2>Notifications</h2>
+    <h2 id="notifications">Notifications</h2>
     <p>
       When you turn on a reminder for a task, Overwith asks for permission to
       show notifications. Reminders are scheduled by your device, not sent
@@ -60,7 +95,7 @@
       You can turn notifications off at any time in your device settings.
     </p>
 
-    <h2>Backups</h2>
+    <h2 id="backups">Backups</h2>
     <p>
       Depending on your device settings, your device's own backup service
       (Google backup on Android, iCloud on iPhone) may include Overwith's data
@@ -69,26 +104,26 @@
       access to it.
     </p>
 
-    <h2>Deleting your data</h2>
+    <h2 id="deleting-your-data">Deleting your data</h2>
     <p>
       Your tasks are deleted from your device when you delete them in the app
       or uninstall Overwith. Overwith holds no data, so there is nothing
       further to request.
     </p>
 
-    <h2>Children</h2>
+    <h2 id="children">Children</h2>
     <p>
       Overwith does not collect information from anyone, including children.
     </p>
 
-    <h2>Changes to this policy</h2>
+    <h2 id="changes-to-this-policy">Changes to this policy</h2>
     <p>
       Any changes will be posted on this page with a new effective date. If
       Overwith ever begins collecting data, this policy will be updated
       before that happens.
     </p>
 
-    <h2>Contact</h2>
+    <h2 id="contact">Contact</h2>
     <p>
       For questions about this policy, email
       <a href="mailto:support@overwith.app">support@overwith.app</a>.
@@ -96,8 +131,9 @@
   </main>
 
   <footer>
+    <p>© 2026 Overwith</p>
     <p>
-      <a href="/">Overwith</a> ·
+      <a href="/">Home</a> ·
       <a href="/support">Support</a> ·
       <a href="mailto:support@overwith.app">support@overwith.app</a>
     </p>

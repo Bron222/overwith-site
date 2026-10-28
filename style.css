@@ -1094,7 +1094,88 @@ details p {
   padding: 0 18px 16px;
 }
 
+/* Privacy: short version card and contents list */
+.short {
+  background: var(--marigold-soft);
+  border-radius: 20px;
+  padding: 20px 22px;
+  margin: 20px 0 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.short p {
+  margin: 0;
+}
+
+.short-label {
+  font-family: var(--f-hand);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.short-text {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.toc {
+  display: block;
+  font-size: 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px 22px;
+  margin-bottom: 32px;
+}
+
+.toc-title {
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+
+.toc ol {
+  margin: 0;
+  padding-left: 1.3em;
+  columns: 2;
+  column-gap: 32px;
+}
+
+.toc li {
+  break-inside: avoid;
+  padding: 2px 0;
+}
+
+.policy h2 {
+  scroll-margin-top: 16px;
+}
+
 @media (max-width: 460px) {
+  .toc ol {
+    columns: 1;
+  }
+
   .contact {
     flex-direction: column;
     align-items: flex-start;
