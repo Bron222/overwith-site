@@ -2,41 +2,183 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Overwith</title>
-  <meta name="description" content="Overwith: plan your day and your week.">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Overwith · Get it over with.</title>
+  <meta name="description" content="Overwith is the planner for people who'd rather be done. Plan today, park things for later in the week, and tick them off. Coming soon to iPhone and Android.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://overwith.app/">
+  <meta name="theme-color" content="#4355b9">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Overwith">
+  <meta property="og:title" content="Overwith · Get it over with.">
+  <meta property="og:description" content="Overwith is the planner for people who'd rather be done. Plan today, park things for later in the week, and tick them off. Coming soon to iPhone and Android.">
+  <meta property="og:url" content="https://overwith.app/">
+  <meta name="twitter:card" content="summary">
+  <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header>
-    <a class="brand" href="/">Overwith</a>
-    <nav>
+    <a class="brand" href="/" aria-label="Overwith home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Overwith
+    </a>
+    <nav aria-label="Main">
       <a href="/privacy">Privacy</a>
       <a href="/support">Support</a>
+      <button class="sound-btn" type="button" id="soundBtn" aria-pressed="true" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>
+          <path class="wave" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>
+          <path class="cross" d="M17 9l5 6M22 9l-5 6"/>
+        </svg>
+        <span id="soundLabel">Sound on</span>
+      </button>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>Overwith</h1>
-      <p class="tagline">Plan your day and your week.</p>
-      <p>
-        Overwith is a simple task planner. Put tasks on a set day or
-        "sometime this week", set repeating tasks and reminders, and let
-        unfinished tasks move forward automatically so nothing gets lost.
-      </p>
-      <p>
-        Your tasks stay on your device. No accounts, no ads, no tracking.
-      </p>
+  <main id="main" class="home">
+    <!-- Hero -->
+    <section class="band hero" aria-labelledby="hero-title">
+      <div class="wrap split">
+        <div class="copy">
+          <h1 id="hero-title">Get <span class="it">it<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M60 8 C 20 0, -2 30, 8 62 C 18 96, 80 100, 94 64 C 104 34, 82 6, 46 10"/></svg></span> over with<span class="dot">.</span></h1>
+          <p class="lede">The planner for people who'd rather be done. (So, everyone.)</p>
+          <p>Plan today, park things for later in the week, and tick them off. That's it. That's the app.</p>
+          <div class="stores">
+            <button class="store" type="button" data-soon><small>Coming soon to the</small><b>App Store</b></button>
+            <button class="store" type="button" data-soon><small>Coming soon to</small><b>Google Play</b></button>
+          </div>
+        </div>
+
+        <div class="phone" role="group" aria-label="Try it: a sample Today list">
+          <span class="margin-note hand" aria-hidden="true">go on, tick one ↓</span>
+          <div class="phone-head">
+            <div class="phone-title">Today</div>
+            <div class="phone-date" id="heroDate">Your list for today</div>
+          </div>
+          <div class="sec" id="heroCount" aria-live="polite">Today · 0 of 4 done</div>
+          <ul class="tasks" id="heroList">
+            <li class="task"><input class="check" type="checkbox" id="hero-0"><label class="label" for="hero-0">Reply to that email from last Tuesday<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1 6 C 18 1, 28 9, 48 5 S 78 1, 99 5"/></svg><span class="meta">Sometime this week</span></label></li>
+            <li class="task"><input class="check" type="checkbox" id="hero-1"><label class="label" for="hero-1">Book the dentist (ugh)<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1 6 C 18 1, 28 9, 48 5 S 78 1, 99 5"/></svg></label></li>
+            <li class="task"><input class="check" type="checkbox" id="hero-2"><label class="label" for="hero-2">Water the plants<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1 6 C 18 1, 28 9, 48 5 S 78 1, 99 5"/></svg><span class="meta">Weekly</span></label></li>
+            <li class="task"><input class="check" type="checkbox" id="hero-3"><label class="label" for="hero-3">Call Mum back<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1 6 C 18 1, 28 9, 48 5 S 78 1, 99 5"/></svg></label></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Day or week -->
+    <section class="band" aria-labelledby="week-title">
+      <div class="wrap split">
+        <div class="copy">
+          <h2 id="week-title">Today. Or, you know, sometime this week.</h2>
+          <p class="lede">Some things need doing on Tuesday. Some just need doing before Sunday.</p>
+          <p>Give a task a day, or just give it a week. Week tasks wait on your Today list until they're done. Patiently, like a very polite houseguest.</p>
+        </div>
+        <div class="board" role="group" aria-label="Try it: move tasks between a day and the week">
+          <div class="col">
+            <h3>Tuesday <span id="dayCount">2 tasks</span></h3>
+            <ul id="dayList">
+              <li class="chip"><span>Pay the electricity bill</span></li>
+              <li class="chip"><span>Gym (allegedly)</span></li>
+            </ul>
+          </div>
+          <div class="col week">
+            <h3>Sometime this week <span id="weekCount">2 tasks</span></h3>
+            <ul id="weekList">
+              <li class="chip"><span>Clean out the fridge</span></li>
+              <li class="chip"><span>Return the jumper</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carry forward -->
+    <section class="band" aria-labelledby="carry-title">
+      <div class="wrap split">
+        <div class="copy">
+          <h2 id="carry-title">Didn't get to it? Happens. It'll wait.</h2>
+          <p class="lede">Unfinished tasks follow you to today. No guilt, nothing lost.</p>
+          <p>Tick what you finished, then sleep on the rest. Tomorrow, the leftovers are already on your list.</p>
+        </div>
+        <div class="carry">
+          <div class="days" id="days" aria-hidden="true">
+            <div class="day today">Mon</div><div class="day">Tue</div><div class="day">Wed</div><div class="day">Thu</div><div class="day">Fri</div><div class="day">Sat</div><div class="day">Sun</div>
+          </div>
+          <div class="phone" role="group" aria-label="Try it: watch unfinished tasks carry forward">
+            <div class="phone-head">
+              <div class="phone-title">Today</div>
+              <div class="phone-date" id="carryDate">Monday</div>
+            </div>
+            <div class="sec" id="carryCount" aria-live="polite">Today · 0 of 3 done</div>
+            <ul class="tasks" id="carryList">
+              <li class="task"><input class="check" type="checkbox" id="carry-0"><label class="label" for="carry-0">Return the library book<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1 6 C 18 1, 28 9, 48 5 S 78 1, 99 5"/></svg></label></li>
+              <li class="task"><input class="check" type="checkbox" id="carry-1"><label class="label" for="carry-1">Fix the squeaky door<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1 6 C 18 1, 28 9, 48 5 S 78 1, 99 5"/></svg></label></li>
+              <li class="task"><input class="check" type="checkbox" id="carry-2"><label class="label" for="carry-2">Learn Spanish<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M1 6 C 18 1, 28 9, 48 5 S 78 1, 99 5"/></svg><span class="meta">ambitious. we love it</span></label></li>
+            </ul>
+            <div class="row-btns" id="carryBtns" hidden>
+              <button class="btn" type="button" id="sleep">Sleep on it 😴</button>
+              <button class="btn ghost" type="button" id="carryReset">Start the week over</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <section class="band privacy-band" aria-labelledby="privacy-title">
+      <div class="wrap split">
+        <div class="copy">
+          <h2 id="privacy-title">We don't want your data. Really.</h2>
+          <p class="lede">Your tasks live on your phone and nowhere else. No account, no sign-in, no “we've updated our privacy policy” emails.</p>
+          <ul class="nos" aria-label="What Overwith doesn't have">
+            <li>No accounts</li>
+            <li>No ads</li>
+            <li>No tracking</li>
+            <li>No servers</li>
+          </ul>
+          <p><a href="/privacy">Read the privacy policy</a>. It's short. We ran out of things to not collect.</p>
+        </div>
+        <div class="counter">
+          <div class="counter-label">Things we know about you:</div>
+          <div class="zero" id="zero">0</div>
+          <button class="btn poke" type="button" id="poke" hidden>Try to make it go up</button>
+          <p class="quip" id="quip" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="band cta" aria-labelledby="cta-title">
+      <div class="wrap">
+        <p class="hand cta-note">your to-do list called. it misses you.</p>
+        <h2 id="cta-title">Go on. Get it over with.</h2>
+        <p class="lede">Coming soon to iPhone and Android.</p>
+        <div class="stores">
+          <button class="store" type="button" data-soon><small>Coming soon to the</small><b>App Store</b></button>
+          <button class="store" type="button" data-soon><small>Coming soon to</small><b>Google Play</b></button>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
+    <p>© 2026 Overwith</p>
     <p>
       <a href="/privacy">Privacy Policy</a> ·
       <a href="/support">Support</a> ·
       <a href="mailto:support@overwith.app">support@overwith.app</a>
     </p>
   </footer>
+
+  <output class="toast" id="toast" aria-live="polite"></output>
 </body>
 </html>
