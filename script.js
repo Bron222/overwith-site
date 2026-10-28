@@ -380,10 +380,33 @@
     });
   }
 
+  // ---------- Support page search ----------
+  var faqSearch = $("faqSearch");
+  if (faqSearch) {
+    $("faqSearchBox").hidden = false;
+    var faqs = document.querySelectorAll(".faq-group details");
+    var groups = document.querySelectorAll(".faq-group");
+    faqSearch.addEventListener("input", function () {
+      var q = faqSearch.value.trim().toLowerCase();
+      var shown = 0;
+      faqs.forEach(function (d) {
+        var match = !q || d.textContent.toLowerCase().includes(q);
+        d.hidden = !match;
+        // Open matching answers while searching, close them when cleared.
+        d.open = Boolean(q) && match;
+        if (match) shown++;
+      });
+      groups.forEach(function (g) {
+        g.hidden = !g.querySelector("details:not([hidden])");
+      });
+      $("faqEmpty").hidden = shown > 0;
+    });
+  }
+
   // ---------- App store buttons ----------
   document.querySelectorAll("[data-soon]").forEach(function (b) {
     b.addEventListener("click", function () {
-      toast("Not out yet. Soon, promise.");
+      toast("Not out yet. Ironic, we know.");
     });
   });
 })();

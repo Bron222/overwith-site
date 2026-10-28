@@ -2,71 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Support · Overwith</title>
   <meta name="description" content="Help and answers for the Overwith app.">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header>
-    <a class="brand" href="/">Overwith</a>
-    <nav>
+    <a class="brand" href="/" aria-label="Overwith home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Overwith
+    </a>
+    <nav aria-label="Main">
       <a href="/privacy">Privacy</a>
       <a href="/support" aria-current="page">Support</a>
     </nav>
   </header>
 
-  <main>
-    <h1>Overwith Support</h1>
-    <p>
-      For help, bug reports, or suggestions, email
-      <a href="mailto:support@overwith.app">support@overwith.app</a>.
-    </p>
+  <main id="main" class="page">
+    <h1>Need a hand?</h1>
+    <p class="lede">Most answers are right here. If yours isn't, email us and we'll sort it out.</p>
 
-    <h2>Common questions</h2>
+    <div class="contact">
+      <div>
+        <p class="contact-title">Email support</p>
+        <p><a href="mailto:support@overwith.app">support@overwith.app</a></p>
+        <p class="muted">Bug reports, ideas and fan mail all welcome.</p>
+      </div>
+      <span class="hand contact-note" aria-hidden="true">we don't bite</span>
+    </div>
 
-    <h3>A reminder arrived a few minutes late.</h3>
-    <p>
-      To save battery, your device may group reminders together, so they can
-      arrive a few minutes after the set time.
-    </p>
+    <div class="faq-search" id="faqSearchBox" hidden>
+      <label for="faqSearch">Search the answers</label>
+      <input type="search" id="faqSearch" placeholder="Try “reminder” or “delete”" autocomplete="off">
+      <p class="faq-empty" id="faqEmpty" aria-live="polite" hidden>
+        Nothing matches that. Try another word, or email
+        <a href="mailto:support@overwith.app">support@overwith.app</a>.
+      </p>
+    </div>
 
-    <h3>Reminders aren't appearing.</h3>
-    <p>
-      Check that notifications are allowed for Overwith in your device
-      settings. On Android, battery-saving settings can also delay reminders.
-    </p>
+    <section class="faq-group" aria-labelledby="faq-reminders">
+      <h2 id="faq-reminders">Reminders</h2>
 
-    <h3>The task name doesn't show on the lock screen.</h3>
-    <p>
-      Your device is set to hide sensitive notification content, and Overwith
-      follows that setting. Unlock your device to see the full reminder.
-    </p>
+      <details>
+        <summary>My reminder is fashionably late.</summary>
+        <p>
+          To save battery, your device may group reminders together, so they
+          can arrive a few minutes after the set time.
+        </p>
+      </details>
 
-    <h3>Can tasks sync between devices?</h3>
-    <p>
-      Not currently. Tasks are stored only on the device where they were
-      created.
-    </p>
+      <details>
+        <summary>My reminders aren't showing up at all.</summary>
+        <p>
+          Check that notifications are allowed for Overwith in your device
+          settings. On Android, battery-saving settings can also delay
+          reminders.
+        </p>
+      </details>
 
-    <h3>What happens to unfinished tasks?</h3>
-    <p>
-      Unfinished tasks move forward automatically, so nothing gets lost. Day
-      tasks move to today, "this week" tasks move to the current week, and
-      weekly repeating tasks move to their next scheduled day. Any reminder
-      moves with its task.
-    </p>
+      <details>
+        <summary>The task name is hidden on my lock screen.</summary>
+        <p>
+          That's on purpose. Your device is set to hide sensitive notification
+          content, and Overwith follows that setting. Unlock your device to see
+          the full reminder.
+        </p>
+      </details>
+    </section>
 
-    <h3>How do I delete all my data?</h3>
-    <p>
-      Uninstalling Overwith deletes all of its data from your device. See the
-      <a href="/privacy">Privacy Policy</a>.
-    </p>
+    <section class="faq-group" aria-labelledby="faq-tasks">
+      <h2 id="faq-tasks">Your tasks</h2>
+
+      <details>
+        <summary>What happens to the things I didn't finish?</summary>
+        <p>
+          They move forward automatically, so nothing gets lost. Day tasks move
+          to today, "this week" tasks move to the current week, and weekly
+          repeating tasks move to their next scheduled day. Any reminder moves
+          with its task.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I see my tasks on another device?</summary>
+        <p>
+          Not right now. Tasks are stored only on the device where they were
+          created.
+        </p>
+      </details>
+    </section>
+
+    <section class="faq-group" aria-labelledby="faq-data">
+      <h2 id="faq-data">Your data</h2>
+
+      <details>
+        <summary>How do I delete everything?</summary>
+        <p>
+          Uninstalling Overwith deletes all of its data from your device. See
+          the <a href="/privacy">Privacy Policy</a> for the details.
+        </p>
+      </details>
+    </section>
   </main>
 
   <footer>
+    <p>© 2026 Overwith</p>
     <p>
-      <a href="/">Overwith</a> ·
+      <a href="/">Home</a> ·
       <a href="/privacy">Privacy Policy</a> ·
       <a href="mailto:support@overwith.app">support@overwith.app</a>
     </p>
