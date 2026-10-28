@@ -24,22 +24,26 @@
   font-display: swap;
 }
 
-/* ---------- Tokens ---------- */
+/* ---------- Tokens ----------
+   Dark is the default look. The sun/moon switch sets data-theme="light"
+   on <html>, and the choice is remembered in the visitor's browser. */
 :root {
-  --paper: #f6f6fb;
-  --card: #ffffff;
-  --ink: #1b1b2f;
-  --muted: #5c5e73;
-  --line: #e2e2ee;
-  --indigo: #4355b9;
-  --on-indigo: #ffffff;
-  --indigo-soft: #dfe1ff;
-  --marigold: #e89a24;
-  --marigold-soft: #fff1d9;
-  --done: #2b8a57;
-  --shadow: 0 1px 2px rgb(27 27 47 / 0.06), 0 8px 24px rgb(27 27 47 / 0.08);
-  /* Yellow text on the privacy band, which flips light in dark mode */
-  --band-accent: #ffc56b;
+  --paper: #121318;
+  --card: #1c1d26;
+  --ink: #e5e2ea;
+  --muted: #a9aabd;
+  --line: #2e3040;
+  --indigo: #bac3ff;
+  --on-indigo: #102078;
+  --indigo-soft: #2a3478;
+  --marigold: #ffc56b;
+  /* Warm "amber" cards: "Sometime this week", short version, tags */
+  --marigold-soft: #6a4510;
+  --tag-ink: #ffc56b;
+  --done: #74d6a0;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+  /* Yellow text on the privacy band, which is light in dark mode */
+  --band-accent: #8f5300;
 
   --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -50,25 +54,26 @@
   --gutter-l: max(16px, env(safe-area-inset-left, 0px));
   --gutter-r: max(16px, env(safe-area-inset-right, 0px));
 
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #121318;
-    --card: #1c1d26;
-    --ink: #e5e2ea;
-    --muted: #a9aabd;
-    --line: #2e3040;
-    --indigo: #bac3ff;
-    --on-indigo: #102078;
-    --indigo-soft: #2a3478;
-    --marigold: #ffc56b;
-    --marigold-soft: #3a2c14;
-    --done: #74d6a0;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
-    --band-accent: #8f5300;
-  }
+:root[data-theme="light"] {
+  --paper: #f6f6fb;
+  --card: #ffffff;
+  --ink: #1b1b2f;
+  --muted: #5c5e73;
+  --line: #e2e2ee;
+  --indigo: #4355b9;
+  --on-indigo: #ffffff;
+  --indigo-soft: #dfe1ff;
+  --marigold: #e89a24;
+  --marigold-soft: #ffcd6e;
+  --tag-ink: #5c3c0a;
+  --done: #2b8a57;
+  --shadow: 0 1px 2px rgb(27 27 47 / 0.06), 0 8px 24px rgb(27 27 47 / 0.08);
+  --band-accent: #ffc56b;
+
+  color-scheme: light;
 }
 
 /* ---------- Base ---------- */
@@ -309,6 +314,42 @@ nav a[aria-current="page"] {
 
 .sound-btn:hover {
   color: var(--ink);
+}
+
+/* Sun/moon switch: shows a moon in dark mode, a sun in light mode */
+.theme-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.theme-btn:hover {
+  border-color: var(--marigold);
+}
+
+.theme-btn svg {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.35s ease, opacity 0.25s;
+}
+
+.theme-btn .sun,
+:root[data-theme="light"] .theme-btn .moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+
+:root[data-theme="light"] .theme-btn .sun {
+  opacity: 1;
+  transform: none;
 }
 
 .sound-btn svg {
@@ -666,8 +707,7 @@ footer a {
   padding: 1px 7px;
   border-radius: 999px;
   background: var(--marigold-soft);
-  /* Darker than plain marigold so the small text stays readable */
-  color: color-mix(in srgb, var(--marigold) 60%, var(--ink));
+  color: var(--tag-ink);
   font-size: 0.72rem;
   font-weight: 700;
 }
