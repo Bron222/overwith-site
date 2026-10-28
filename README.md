@@ -15,9 +15,10 @@ build step.
 
 ## Other files
 
-- `style.css`: all styles. Colours are set once at the top, with a dark mode version.
-- `script.js`: the home page demos, sounds and the support search. Every page
-  still works without it.
+- `style.css`: all styles. Colours are set once at the top. Dark is the
+  default, with a light version for the sun/moon switch.
+- `script.js`: the sun/moon switch, the home page demos, sounds and the
+  support search. Every page still works without it.
 - `fonts/`: Bricolage Grotesque, Figtree and Caveat, with their open font
   licences. They're hosted here so the site never sends visitors to Google or
   anyone else.
@@ -27,7 +28,8 @@ build step.
 ## Privacy
 
 The site has no analytics, no cookies and no third-party requests. The only
-thing it remembers is your sound on/off choice, saved in your own browser.
+things it remembers are your light/dark and sound on/off choices, saved in
+your own browser.
 
 ## Preview locally
 

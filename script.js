@@ -1,5 +1,6 @@
-// Overwith home page: the little "try it" demos, pop-up messages and sounds.
-// The page still reads fine without this script; it only adds the fun.
+// Overwith site script: the light/dark switch, the home page "try it" demos,
+// pop-up messages, sounds and the support search. Every page still reads
+// fine without it; it only adds the fun.
 (function () {
   "use strict";
 
@@ -18,6 +19,32 @@
   function esc(s) {
     return s.replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  // ---------- Light/dark switch ----------
+  // Dark is the default. A line in each page's <head> applies a saved
+  // "light" choice before the page draws, so there's no flash.
+  var root = document.documentElement;
+  var themeBtn = $("themeBtn");
+  function showTheme() {
+    var light = root.getAttribute("data-theme") === "light";
+    themeBtn.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+    themeBtn.title = light ? "Switch to dark mode" : "Switch to light mode";
+  }
+  if (themeBtn) {
+    themeBtn.hidden = false;
+    showTheme();
+    themeBtn.addEventListener("click", function () {
+      var light = root.getAttribute("data-theme") !== "light";
+      if (light) root.setAttribute("data-theme", "light");
+      else root.removeAttribute("data-theme");
+      try {
+        localStorage.setItem("ow-theme", light ? "light" : "dark");
+      } catch (e) {
+        // Storage blocked: the choice lasts until the page is closed.
+      }
+      showTheme();
     });
   }
 
