@@ -124,9 +124,9 @@
 
   var cheers = [
     "Look at you go.",
-    "One less thing.",
-    "Gone. Never think about it again.",
-    "Productivity looks good on you."
+    "Your mum would be so proud.",
+    "Gone. Like it never happened.",
+    "One less thing."
   ];
   var cheerN = 0;
 
@@ -148,7 +148,7 @@
         if (!box.checked) return;
         if (done === heroChecks.length) {
           sfx.tada();
-          toast("All done. Go outside. 🌤️");
+          toast("All done?! Who even are you? 🎉");
         } else {
           sfx.tick();
           toast(pick(cheers, cheerN++));
@@ -176,11 +176,15 @@
     { title: "Return the jumper", where: "week" }
   ];
   var toWeek = [
-    "Future you can deal with it. This week, though.",
     "Parked. Not forgotten.",
-    "Sometime this week. Pinky promise."
+    "Future you can deal with it. This week, though.",
+    "Bold strategy. We believe in you."
   ];
-  var toDay = ["Tuesday it is. Bold.", "Locked in for Tuesday.", "Look at you, committing."];
+  var toDay = [
+    "Tuesday it is. Bold.",
+    "Oh, we're committing now? Love that.",
+    "Locked in for Tuesday."
+  ];
   var moveN = 0;
 
   function renderBoard(focusTitle) {
@@ -229,7 +233,7 @@
   var carryStart = [
     { title: "Return the library book" },
     { title: "Fix the squeaky door" },
-    { title: "Learn Spanish", meta: "ambitious, but sure" }
+    { title: "Learn Spanish", meta: "ambitious. we love it" }
   ];
   var monday = (function () {
     var d = new Date();
@@ -290,7 +294,7 @@
     var list = $("carryList");
     list.innerHTML = "";
     if (!carry.length) {
-      list.innerHTML = '<li class="empty">Nothing left to carry. Suspicious.</li>';
+      list.innerHTML = '<li class="empty">Nothing left to carry. Suspiciously impressive.</li>';
     }
     carry.forEach(function (t, i) {
       var li = document.createElement("li");
@@ -340,11 +344,11 @@
       arriving = true;
       renderCarry();
       if (!left.length) {
-        toast("Clean slate. Nothing to carry.");
+        toast("Clean slate. Enjoy that feeling.");
       } else {
         toast(
           left.length + (left.length === 1 ? " task" : " tasks") + " came with you" +
-            (finished ? ". The rest are done." : ". No judgement.")
+            (finished ? ". The rest are done." : ". Tomorrow's your day.")
         );
       }
     });
@@ -359,9 +363,9 @@
       "Nope.",
       "Still zero.",
       "We genuinely have nowhere to put it.",
-      "No servers. No spreadsheet. No clue.",
-      "You could keep clicking. It's still zero.",
-      "OK, you're just having fun now."
+      "No servers. No spreadsheet. No snooping.",
+      "You can keep clicking. We'll keep knowing nothing.",
+      "Honestly? We admire the persistence."
     ];
     var pokeN = 0;
     var zero = $("zero");
