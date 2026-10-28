@@ -376,6 +376,7 @@ nav a[aria-current="page"] {
 .store {
   display: inline-flex;
   flex-direction: column;
+  align-items: center;
   padding: 9px 18px;
   border: 0;
   border-radius: 14px;
@@ -383,7 +384,7 @@ nav a[aria-current="page"] {
   color: var(--paper);
   font: inherit;
   line-height: 1.15;
-  text-align: left;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
 }
