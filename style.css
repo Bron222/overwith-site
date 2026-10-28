@@ -666,7 +666,8 @@ footer a {
   padding: 1px 7px;
   border-radius: 999px;
   background: var(--marigold-soft);
-  color: var(--marigold);
+  /* Darker than plain marigold so the small text stays readable */
+  color: color-mix(in srgb, var(--marigold) 60%, var(--ink));
   font-size: 0.72rem;
   font-weight: 700;
 }
@@ -1187,6 +1188,60 @@ details p {
     top: -18px;
     font-size: 1.3rem;
   }
+}
+
+/* ---------- 404 page ---------- */
+.lost {
+  text-align: center;
+  padding-top: clamp(16px, 5vw, 48px);
+}
+
+.lost h1 {
+  margin-top: 0;
+}
+
+.lost .lede {
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lost-code {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(6rem, 22vw, 10rem);
+  line-height: 0.9;
+  color: var(--indigo);
+  letter-spacing: -0.04em;
+}
+
+.lost-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 12px 18px;
+  margin-bottom: 28px;
+}
+
+.lost-check {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--muted);
+  border-radius: 6px;
+}
+
+.lost-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* ---------- Motion ---------- */
