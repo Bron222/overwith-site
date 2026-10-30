@@ -29,6 +29,7 @@
    on <html>, and the choice is remembered in the visitor's browser. */
 :root {
   --paper: #121318;
+  --page: var(--paper);
   --card: #1c1d26;
   --ink: #e5e2ea;
   --muted: #a9aabd;
@@ -58,7 +59,9 @@
 }
 
 :root[data-theme="light"] {
-  --paper: #edcd8f47;
+  --paper: #f6f6fb;
+  /* Page background only: a warm paper tone */
+  --page: #fcf5e8;
   --card: #ffffff;
   --ink: #1b1b2f;
   --muted: #5c5e73;
@@ -90,7 +93,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--page);
   color: var(--ink);
   font-family: var(--f-body);
   font-size: 1.0625rem;
