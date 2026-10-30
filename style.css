@@ -58,7 +58,7 @@
 }
 
 :root[data-theme="light"] {
-  --paper: #f6f6fb;
+  --paper: #edcd8f47;
   --card: #ffffff;
   --ink: #1b1b2f;
   --muted: #5c5e73;
