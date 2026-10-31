@@ -22,7 +22,7 @@ build step.
 - `fonts/`: Bricolage Grotesque, Figtree and Caveat, with their open font
   licences. They're hosted here so the site never sends visitors to Google or
   anyone else.
-- `favicon.svg`: the tab icon (temporary, until the app icon is ready).
+- `favicon.svg`: the tab icon, the same tick as the app icon.
 - `CNAME` and `.nojekyll`: GitHub Pages settings.
 
 ## Privacy
