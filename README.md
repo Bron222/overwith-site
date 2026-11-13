@@ -18,7 +18,9 @@ build step.
 - `style.css`: all styles. Colours are set once at the top. Dark is the
   default, with a light version for the sun/moon switch.
 - `script.js`: the sun/moon switch, the home page demos, sounds and the
-  support search. Every page still works without it.
+  support search. Every page still works without it. The demos' pop-up
+  lines are the same ones the app uses, picked at random so no line
+  repeats until all the others have been shown.
 - `fonts/`: Bricolage Grotesque, Figtree and Caveat, with their open font
   licences. They're hosted here so the site never sends visitors to Google or
   anyone else.
