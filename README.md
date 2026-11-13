@@ -15,7 +15,7 @@ build step.
 
 ## Other files
 
-- `style.css`: all styles. Colours are set once at the top. Dark is the
+- `style.css`: all styles. Colors are set once at the top. Dark is the
   default, with a light version for the sun/moon switch.
 - `script.js`: the sun/moon switch, the home page demos, sounds and the
   support search. Every page still works without it. The demos' pop-up
