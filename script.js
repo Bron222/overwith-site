@@ -12,8 +12,28 @@
     return document.getElementById(id);
   }
 
-  function pick(list, i) {
-    return list[i % list.length];
+  // A random line from the list. No line comes back until every other one
+  // has been shown, and the same line never shows twice in a row. (The
+  // app draws its pop-ups the same way.)
+  function pick(list) {
+    var bag = list._bag;
+    if (!bag || !bag.length) {
+      bag = list.map(function (_, i) {
+        return i;
+      });
+      for (var i = bag.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = bag[i];
+        bag[i] = bag[j];
+        bag[j] = t;
+      }
+      if (bag.length > 1 && bag[bag.length - 1] === list._last) {
+        bag.unshift(bag.pop());
+      }
+      list._bag = bag;
+    }
+    list._last = bag.pop();
+    return list[list._last];
   }
 
   function esc(s) {
@@ -149,13 +169,39 @@
     });
   }
 
+  // The same lines the app uses.
   var cheers = [
     "Look at you go.",
     "Your mum would be so proud.",
     "Gone. Like it never happened.",
-    "One less thing."
+    "One less thing.",
+    "Smashed it.",
+    "Another one bites the dust.",
+    "Crossed off. Feels good, right?",
+    "Look at that. Progress.",
+    "You did a thing!",
+    "Nailed it.",
+    "That one never stood a chance.",
+    "Gold star for you. ⭐",
+    "And just like that, it's gone.",
+    "Done. Treat yourself.",
+    "Tick. So satisfying."
   ];
-  var cheerN = 0;
+  var allDone = [
+    "All done?! Who even are you? 🎉",
+    "Clean sweep. Go do something fun.",
+    "Nothing left. Suspiciously impressive.",
+    "All done. Take the rest of the day off. You've earned it.",
+    "Every last one. Legend. 🎉",
+    "List cleared. Feel that? That's freedom."
+  ];
+  var unticked = [
+    "Un-done. It happens.",
+    "Back on the list.",
+    "Changed your mind? Fair.",
+    "Oops. Back it goes.",
+    "Not quite done. No worries."
+  ];
 
   // ---------- 1. Hero list ----------
   var heroList = $("heroList");
@@ -172,13 +218,16 @@
     heroChecks.forEach(function (box) {
       box.addEventListener("change", function () {
         var done = updateHero();
-        if (!box.checked) return;
+        if (!box.checked) {
+          toast(pick(unticked));
+          return;
+        }
         if (done === heroChecks.length) {
           sfx.tada();
-          toast("All done?! Who even are you? 🎉");
+          toast(pick(allDone));
         } else {
           sfx.tick();
-          toast(pick(cheers, cheerN++));
+          toast(pick(cheers));
         }
       });
     });
@@ -205,14 +254,20 @@
   var toWeek = [
     "Parked. Not forgotten.",
     "Future you can deal with it. This week, though.",
-    "Bold strategy. We believe in you."
+    "Bold strategy. We believe in you.",
+    "Later. Definitely later.",
+    "It'll keep.",
+    "Moved to the \u201ceventually\u201d pile.",
+    "Not today. But this week. Probably."
   ];
   var toDay = [
     "Tuesday it is. Bold.",
     "Oh, we're committing now? Love that.",
-    "Locked in for Tuesday."
+    "Locked in for Tuesday.",
+    "Tuesday it is. No take-backs.",
+    "Pencilled in for Tuesday.",
+    "A plan! Look at you."
   ];
-  var moveN = 0;
 
   function renderBoard(focusTitle) {
     ["day", "week"].forEach(function (where) {
@@ -244,7 +299,7 @@
         btn.addEventListener("click", function () {
           t.where = where === "day" ? "week" : "day";
           sfx.tick();
-          toast(t.where === "week" ? pick(toWeek, moveN++) : pick(toDay, moveN++));
+          toast(t.where === "week" ? pick(toWeek) : pick(toDay));
           renderBoard(t.title);
         });
         ul.appendChild(li);
@@ -281,6 +336,12 @@
     }
   }
 
+  var carried = [
+    "{n} came with you. {it} wait.",
+    "{n} tagged along. No guilt.",
+    "Didn't get to everything? Happens. {n} moved to today.",
+    "{n} carried over. Nothing lost."
+  ];
   var carry = [];
   var today = 0;
   var arriving = false;
@@ -336,13 +397,16 @@
       li.querySelector("input").addEventListener("change", function (e) {
         t.done = e.target.checked;
         carryCount();
-        if (!t.done) return;
-        var allDone = carry.every(function (x) {
+        if (!t.done) {
+          toast(pick(unticked));
+          return;
+        }
+        var finished = carry.every(function (x) {
           return x.done;
         });
-        if (allDone) sfx.tada();
+        if (finished) sfx.tada();
         else sfx.tick();
-        toast(pick(cheers, cheerN++));
+        toast(pick(finished ? allDone : cheers));
       });
       list.appendChild(li);
     });
@@ -363,7 +427,6 @@
       var left = carry.filter(function (t) {
         return !t.done;
       });
-      var finished = carry.length - left.length;
       today++;
       carry = left.map(function (t) {
         return { title: t.title, meta: t.meta, done: false, from: from };
@@ -373,10 +436,9 @@
       if (!left.length) {
         toast("Clean slate. Enjoy that feeling.");
       } else {
-        toast(
-          left.length + (left.length === 1 ? " task" : " tasks") + " came with you" +
-            (finished ? ". The rest are done." : ". Tomorrow's your day.")
-        );
+        var n = left.length + (left.length === 1 ? " task" : " tasks");
+        var it = left.length === 1 ? "It'll" : "They'll";
+        toast(pick(carried).replace("{n}", n).replace("{it}", it));
       }
     });
     $("carryReset").addEventListener("click", resetCarry);
@@ -392,9 +454,11 @@
       "We genuinely have nowhere to put it.",
       "No servers. No spreadsheet. No snooping.",
       "You can keep clicking. We'll keep knowing nothing.",
-      "Honestly? We admire the persistence."
+      "Honestly? We admire the persistence.",
+      "Zero. Zip. Nada.",
+      "Not even your name.",
+      "Still nothing. We checked."
     ];
-    var pokeN = 0;
     var zero = $("zero");
     poke.hidden = false;
     poke.addEventListener("click", function () {
@@ -403,7 +467,7 @@
       zero.getBoundingClientRect();
       zero.classList.add("shake");
       sfx.nope();
-      $("quip").textContent = pick(quips, pokeN++);
+      $("quip").textContent = pick(quips);
     });
   }
 
